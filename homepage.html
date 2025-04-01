@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laut-O-Meter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Laut-O-Meter</h1>
+    <p>Max Limit: <input type="number" id="maxLimit" value="70"> dB</p>
+    <p><span id="dbLevel">0</span> dB</p>
+    <p>Times Limit Reached: <span id="limitCount">0</span></p>
+
+    <button id="settings">Settings</button>
+    <button id="pause_go">Pause / Go</button>
+    <button id="start_stop_record">Start/Stop Recording</button>
+    
+    <script src="script.js"></script>
+</body>
+</html>
