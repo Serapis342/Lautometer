@@ -1,14 +1,24 @@
 const dbLevel = document.getElementById('dbLevel');
 const calibration = document.getElementById('calibration');
+const dbMax = document.getElementById('maxLimit');
+const limitCount = document.getElementById('limitCount');
 
-let savedCookies = document.cookie.split("; ").find(row => row.startsWith("calibrationValue="))?.split("=")[1];
-if (savedCookies) {
-    calibration.value = savedCookies;
-}
+let dbMaxCounter = 0;
+
+let savedCalibration = document.cookie.split("; ").find(row => row.startsWith("calibrationValue="))?.split("=")[1];
+let savedDbMax = document.cookie.split("; ").find(row => row.startsWith("dbMax="))?.split("=")[1];
+
+if (savedCalibration) { calibration.value = savedCalibration; }
+if (savedDbMax) { dbMax.value = savedDbMax; }
 
 calibration.oninput = e => {
     document.cookie = `calibrationValue=${e.target.value}; path=/`;
 };
+
+dbMax.oninput = e => {
+    document.cookie = `dbMax=${e.target.value}; path=/`;
+};
+
 
 getMicrophone();
 
@@ -47,7 +57,24 @@ function measureLoudness(stream) {
 
         dbLevel.innerHTML = `Lautstärke: ${dB.toFixed(2)} dB`;
 
-        requestAnimationFrame(getRMS);
+
+        checkLoudness(dB);
+
+        if (!window.checkLoudnessInterval) {
+            window.checkLoudnessInterval = setInterval(() => {
+                getRMS(dB);
+            }, 1*1000); // var*1000 enspricht var sekunden
+        }
     }
     getRMS();
+}
+
+let dbHandler = false;
+function checkLoudness(dB) {
+    if (dB > dbMax.value && !dbHandler) {
+        dbMaxCounter++;
+        dbHandler = true;
+    } else if (dB <= dbMax.value) { dbHandler = false; }
+
+    limitCount.innerText = dbMaxCounter;
 }
