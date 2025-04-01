@@ -1,10 +1,19 @@
 const dbLevel = document.getElementById('dbLevel');
+const calibration = document.getElementById('calibration');
+
+let savedCookies = document.cookie.split("; ").find(row => row.startsWith("calibrationValue="))?.split("=")[1];
+if (savedCookies) {
+    calibration.value = savedCookies;
+}
+
+calibration.oninput = e => {
+    document.cookie = `calibrationValue=${e.target.value}; path=/`;
+};
 
 getMicrophone();
 
 function getMicrophone() {
-    navigator.mediaDevices
-        .getUserMedia({ video: false, audio: true })
+    navigator.mediaDevices.getUserMedia({ video: false, audio: true })
         .then((stream) => {
             measureLoudness(stream);
         })
@@ -21,12 +30,8 @@ function measureLoudness(stream) {
 
     analyser.fftSize = 256;
     const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
-    getRMS();
 
     function getRMS() {
-        const bufferLength = analyser.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
         analyser.getByteTimeDomainData(dataArray);
 
@@ -37,11 +42,12 @@ function measureLoudness(stream) {
         }
 
         const rms = Math.sqrt(sum / bufferLength);
-        let dB = 20 * Math.log10(rms); // Kalibrierung nötig
-        if (dB < 0) dB = 0 
+        let dB = 20 * Math.log10(rms) + parseInt(calibration.value);
+        if (dB < 0) dB = 0;
 
         dbLevel.innerHTML = `Lautstärke: ${dB.toFixed(2)} dB`;
 
         requestAnimationFrame(getRMS);
     }
+    getRMS();
 }
