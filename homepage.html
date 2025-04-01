@@ -9,14 +9,17 @@
 </head>
 <body>
     <h1>Laut-O-Meter</h1>
+    
+    <audio id="localAudio"></audio>
+
     <p>Max Limit: <input type="number" id="maxLimit" value="70"> dB</p>
-    <p><span id="dbLevel">0</span> dB</p>
+    <p><span id="dbLevel">0</span></p>
     <p>Times Limit Reached: <span id="limitCount">0</span></p>
 
     <button id="settings">Settings</button>
     <button id="pause_go">Pause / Go</button>
     <button id="start_stop_record">Start/Stop Recording</button>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
