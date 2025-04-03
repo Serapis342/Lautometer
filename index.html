@@ -17,8 +17,12 @@
     <p>Times Limit Reached: <span id="limitCount">0</span></p>
 
     <input type="range" id="calibration" min="-100" max="100" step="1" value="0">
-    <button id="pause_go">Pause / Go</button>
-    <button id="start_stop_record">Start/Stop Recording</button>
+    <button id="pause_go">
+        <img id="image_pause" src="icons/start.svg" href="pause_go">
+    </button>
+    <button id="restart">
+        <img id="image_restart" src="icons/restart.svg" href="restart">
+    </button>
 
     <script src="script.js"></script>
 </body>

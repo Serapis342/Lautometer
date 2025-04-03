@@ -2,6 +2,9 @@ const dbLevel = document.getElementById('dbLevel');
 const calibration = document.getElementById('calibration');
 const dbMax = document.getElementById('maxLimit');
 const limitCount = document.getElementById('limitCount');
+const pauseButton = document.getElementById('pause_go');
+const pauseButtonImage = document.getElementById('image_pause');
+const restartButton = document.getElementById('restart');
 
 let dbMaxCounter = 0;
 
@@ -19,8 +22,21 @@ dbMax.oninput = e => {
     document.cookie = `dbMax=${e.target.value}; path=/`;
 };
 
+pauseButton.onclick = function() {
+    if (window.checkLoudnessInterval) {
+        clearInterval(window.checkLoudnessInterval);
+        window.checkLoudnessInterval = null;
+        pauseButtonImage.src = "icons/start.svg";
+    } else {
+        getMicrophone();
+        pauseButtonImage.src = "icons/pause.svg";
+    }
+};
 
-getMicrophone();
+restartButton.onclick = function() {
+    dbMaxCounter = 0;
+    checkLoudness(-4);
+}
 
 function getMicrophone() {
     navigator.mediaDevices.getUserMedia({ video: false, audio: true })
@@ -63,7 +79,7 @@ function measureLoudness(stream) {
         if (!window.checkLoudnessInterval) {
             window.checkLoudnessInterval = setInterval(() => {
                 getRMS(dB);
-            }, 1*1000); // var*1000 enspricht var sekunden
+            }, 1*200); // var*1000 enspricht var sekunden
         }
     }
     getRMS();
