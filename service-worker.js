@@ -1,13 +1,13 @@
 const CACHE_NAME = 'app-cache-v1';
 const ASSETS = [
     '/',
-    '/index.html',
-    '/script.js',
-    '/styles.css',
-    '/PWA/offline.html',
-    '/icons/pause.svg',
-    '/icons/restart.svg',
-    '/icons/start.svg',
+    'index.html',
+    'script.js',
+    'styles.css',
+    'icons/pause.svg',
+    'icons/restart.svg',
+    'icons/start.svg',
+    'PWA/offline.html',
     'PWA/offline-icon.svg',
     'PWA/microphone.svg',
     'PWA/microphone-512.png',
@@ -58,7 +58,7 @@ self.addEventListener('fetch', event => {
             });
         }).catch(() => {
             if (event.request.destination === 'image') {
-                return caches.match('/icons/offline-icon.svg');
+                return caches.match('icons/offline-icon.svg');
             } else {
                 return caches.match('PWA/offline.html');
             }
