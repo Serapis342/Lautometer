@@ -103,9 +103,11 @@ function measureLoudness(stream) {
         let dB = 20 * Math.log10(rms || 1e-10) + (calibration ? parseFloat(calibration.value) : 0);
         dB = Math.max(dB, 0);
 
-        dbLevel.innerHTML = `${Math.round(dB)} dB`;
+        dbLevel.innerHTML = `${Math.round(dB)}`;
 
-        checkLoudness(dB);
+        let dbMaxValue = parseInt(dbMax.innerHTML)
+        checkLoudness(dB, dbMaxValue);
+        changeDBcolor(dB, dbMaxValue);
     }
 
     getRMS();
@@ -117,12 +119,8 @@ function measureLoudness(stream) {
     }
 }
 
-
-
-
 let dbHandler = false;
-function checkLoudness(dB) {
-    let dbMaxValue = parseInt(dbMax.innerHTML)
+function checkLoudness(dB, dbMaxValue) {
     if (dB > dbMaxValue && !dbHandler) {
         dbMaxCounter++;
         dbHandler = true;
@@ -135,4 +133,14 @@ function setNumberInputToBoundary() {
     if (numberInput.value > 169) { numberInput.value = 169 }
     else if (numberInput.value < 0) { numberInput.value = 0 }
     dbMax.innerHTML = numberInput.value;
+}
+
+function changeDBcolor(dB, dbMaxValue) {
+    if(dB < ((1/3)*dbMaxValue)) {
+        dbLevel.style.color = "#50FA7B";
+    } else if (dB < ((2 / 3) * dbMaxValue)) {
+        dbLevel.style.color = "#FFB86C";
+    } else {
+        dbLevel.style.color = "#FF5555";
+    }
 }

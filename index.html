@@ -22,18 +22,20 @@
             <input id="number_input" type="number" value="5" min="0" max="169">
         </div>
     </div>
-</div>
 
-    <p><span id="dbLevel">0</span></p>
-    <p>Times Limit Reached: <span id="limitCount">0</span></p>
+    <div id="controls">
+        <p><span id="dbLevel">0</span></p>
+        <p>Times Limit Reached: <span id="limitCount">0</span></p>
 
-    <input type="range" id="calibration" min="-100" max="100" step="1" value="0">
-    <button id="pause_go">
-        <img id="image_pause" src="icons/start.svg" href="pause_go">
-    </button>
-    <button id="restart">
-        <img id="image_restart" src="icons/restart.svg" href="restart">
-    </button>
+        <input type="range" id="calibration" min="-100" max="100" step="1" value="0">
+        <br>
+        <button id="pause_go">
+            <img id="image_pause" src="icons/start.svg" href="pause_go">
+        </button>
+        <button id="restart">
+            <img id="image_restart" src="icons/restart.svg" href="restart">
+        </button>
+    </div>
 
     <script src="script.js"></script>
 </body>
