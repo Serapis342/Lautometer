@@ -1,19 +1,19 @@
 const CACHE_NAME = 'app-cache-v1';
 const ASSETS = [
-    './',
-    './index.html',
-    './script.js',
-    './styles.css',
-    'PWA/offline.html',
-    './icons/pause.svg',
-    './icons/restart.svg',
-    './icons/start.svg',
-    './icons/offline-icon.svg',
-    './icons/microphone.svg',
-    './icons/microphone-512.png',
-    './icons/microphone-256.png',
-    './icons/microphone-128.png',
-    './icons/microphone-64.png',
+    'Lautometer/',
+    'Lautometer/index.html',
+    'Lautometer/script.js',
+    'Lautometer/styles.css',
+    'Lautometer/PWA/offline.html',
+    'Lautometer/icons/pause.svg',
+    'Lautometer/icons/restart.svg',
+    'Lautometer/icons/start.svg',
+    'Lautometer/icons/offline-icon.svg',
+    'Lautometer/icons/microphone.svg',
+    'Lautometer/icons/microphone-512.png',
+    'Lautometer/icons/microphone-256.png',
+    'Lautometer/icons/microphone-128.png',
+    'Lautometer/icons/microphone-64.png',
 ];
 
 // Service Worker installieren und statische Assets cachen
@@ -58,9 +58,9 @@ self.addEventListener('fetch', event => {
             });
         }).catch(() => {
             if (event.request.destination === 'image') {
-                return caches.match('icons/offline-icon.svg');
+                return caches.match('Lautometer/icons/offline-icon.svg');
             } else {
-                return caches.match('PWA/offline.html');
+                return caches.match('Lautometer/PWA/offline.html');
             }
         })
     );
