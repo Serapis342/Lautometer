@@ -1,0 +1,36 @@
+{
+    "short_name": "LOM",
+    "name": "Laut-O-Meter",
+    "icons": [
+        {
+            "src": "/icons/microphone.svg",
+            "type": "image/svg+xml",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/icons/microphone-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/icons/microphone-256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "/icons/microphone-128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        }, 
+        {
+            "src": "/icons/microphone-64.png",
+            "type": "image/png",
+            "sizes": "64x64"
+        }
+    ],
+    "start_url": "/index.html",
+    "background_color": "#282A36",
+    "display": "fullscreen",
+    "theme_color": "#bd93f9",
+    "description": "Dezibelmesser"
+}
