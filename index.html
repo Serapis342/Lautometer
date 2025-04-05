@@ -39,11 +39,10 @@
     </div>
 
     <script src="script.js"></script>
-    <script src="/PWA/service-worker.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
-                .register('PWA/service-worker.js/')
+                .register('service-worker.js/')
                 .catch(function (err) {
                     console.error('service-worker registration failed: ' + err);
                 });
