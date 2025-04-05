@@ -8,11 +8,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Laut-O-Meter</h1>
-    
-    <audio id="localAudio"></audio>
 
-    <p>Max Limit: <input type="number" id="maxLimit" value="85"> dB</p>
+    <div class="container-wrapper">
+    <h1 class="title">Laut-O-Meter</h1>
+    
+    <div id="container">
+        <span id="next"></span>
+        <span id="prev"></span>
+        <div id="box">
+            <span id="maxLimit">
+                0
+            </span>
+            <input id="number_input" type="number" value="5" min="0" max="169">
+        </div>
+    </div>
+</div>
+
     <p><span id="dbLevel">0</span></p>
     <p>Times Limit Reached: <span id="limitCount">0</span></p>
 
