@@ -28,7 +28,7 @@
             "sizes": "64x64"
         }
     ],
-    "start_url": "/index.html",
+    "start_url": "/index.html/",
     "background_color": "#282A36",
     "display": "fullscreen",
     "theme_color": "#bd93f9",
