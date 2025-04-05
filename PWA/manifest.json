@@ -3,27 +3,27 @@
     "name": "Laut-O-Meter",
     "icons": [
         {
-            "src": "Lautometer/icons/microphone.svg",
+            "src": "./icons/microphone.svg",
             "type": "image/svg+xml",
             "sizes": "512x512"
         },
         {
-            "src": "Lautometer/icons/microphone-512.png",
+            "src": "./icons/microphone-512.png",
             "type": "image/png",
             "sizes": "512x512"
         },
         {
-            "src": "Lautometer/icons/microphone-256.png",
+            "src": "./icons/microphone-256.png",
             "type": "image/png",
             "sizes": "256x256"
         },
         {
-            "src": "Lautometer/icons/microphone-128.png",
+            "src": "./icons/microphone-128.png",
             "type": "image/png",
             "sizes": "128x128"
         }, 
         {
-            "src": "Lautometer/icons/microphone-64.png",
+            "src": "./icons/microphone-64.png",
             "type": "image/png",
             "sizes": "64x64"
         }
