@@ -144,3 +144,9 @@ function changeDBcolor(dB, dbMaxValue) {
         dbLevel.style.color = "#FF5555";
     }
 }
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('service worker registered'))
+        .catch(err => console.error('service worker not registered: ', err));
+}

@@ -1,6 +1,6 @@
 const CACHE_NAME = 'app-cache-v1';
 const ASSETS = [
-    '/',
+    "/",
     'index.html',
     'script.js',
     'styles.css',
