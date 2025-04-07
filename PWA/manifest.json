@@ -29,7 +29,7 @@
             "sizes": "64x64"
         }
     ],
-    "start_url": "/Lautometer/",
+    "start_url": "https://serapis342.github.io/Lautometer/",
     "background_color": "#282A36",
     "display": "fullscreen",
     "theme_color": "#bd93f9",
