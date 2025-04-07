@@ -8,6 +8,7 @@ const restartButton = document.getElementById('restart');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
 const numberInput = document.getElementById('number_input');
+const title = document.getElementById('title');
 
 let dbMaxCounter = 0;
 
@@ -64,6 +65,9 @@ numberInput.addEventListener("focus", () => {
 numberInput.addEventListener("blur", () => {
     clearInterval(interval);
 });
+
+window.addEventListener("load", adjustFontSize);
+window.addEventListener("resize", adjustFontSize);
 
 function getMicrophone() {
     navigator.mediaDevices.getUserMedia({ video: false, audio: true })
@@ -149,4 +153,16 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js')
         .then(() => console.log('service worker registered'))
         .catch(err => console.error('service worker not registered: ', err));
+}
+
+function adjustFontSize() {
+    const parentWidth = document.body.clientWidth;
+    let currentFontSize = parseFloat(window.getComputedStyle(title).fontSize);
+
+    if (title.offsetWidth > parentWidth) {
+        while (title.offsetWidth > parentWidth) {
+            currentFontSize -= 1;
+            title.style.fontSize = `${currentFontSize}px`;
+        }
+    }
 }

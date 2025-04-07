@@ -7,10 +7,12 @@ body {
     margin: 5%;
     background-color: #282A36;
     color: #F8F8F2;
+    overflow: hidden;
+    height: 100%;
 }
 
 button {
-    width: 2vw;
+    width: 3em;
     margin: 0.1vw;
     padding: 0.2vw;
     font-size: 1vw;
@@ -24,7 +26,7 @@ button {
 }
 
 #dbLevel {
-    font-size: 5em;
+    font-size: 7em;
 }
 
 #controls {
