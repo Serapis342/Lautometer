@@ -1,10 +1,2 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js');
-
-if (workbox) {
-    workbox.routing.registerRoute(
-        new RegExp('\/css|\/js\/'),
-        workbox.strategies.cacheFirst({
-            cacheName: 'lautometer_cache'
-        })
-    )
-}
+if(!self.define){let e,i={};const r=(r,c)=>(r=new URL(r+".js",c).href,i[r]||new Promise((i=>{if("document"in self){const e=document.createElement("script");e.src=r,e.onload=i,document.head.appendChild(e)}else e=r,importScripts(r),i()})).then((()=>{let e=i[r];if(!e)throw new Error(`Module ${r} didn’t register its module`);return e})));self.define=(c,f)=>{const o=e||("document"in self?document.currentScript.src:"")||location.href;if(i[o])return;let s={};const n=e=>r(e,o),d={module:{uri:o},exports:s,require:n};i[o]=Promise.all(c.map((e=>d[e]||n(e)))).then((e=>(f(...e),s)))}}define(["./workbox-890e37b4"],(function(e){"use strict";self.addEventListener("message",(e=>{e.data&&"SKIP_WAITING"===e.data.type&&self.skipWaiting()})),e.precacheAndRoute([{url:"icons/favicon.ico",revision:"dcdef87dda5ae565c0e6f36fe0ee7fdd"},{url:"icons/pause.svg",revision:"fa9e3e2b40d15c76fc5563eb4396ca32"},{url:"icons/restart.svg",revision:"2e7c37ca3463b6b75df6436daeb55b41"},{url:"icons/start.svg",revision:"183afefadafbef62309f6c38449a0ebb"},{url:"index.html",revision:"b801b3cb883822a170be30594126990c"},{url:"PWA/manifest.json",revision:"a96b6110bdb566ebc9b012fee94f3837"},{url:"PWA/microphone-128.png",revision:"cdcfa7e4912013f32d051fab6cdccb6f"},{url:"PWA/microphone-256.png",revision:"fdc39c43e2b0c0934c804bd9ede691de"},{url:"PWA/microphone-512.png",revision:"315973f3a16e92a98ecde45b88033ed3"},{url:"PWA/microphone-64.png",revision:"9c88818157714cf8f323ed07919b7329"},{url:"PWA/microphone.svg",revision:"7001f78d7a0dcd55b872b0f38f60c8dd"},{url:"PWA/offline-icon.svg",revision:"a3f8c8c49cd397d89f7b859306ebf955"},{url:"PWA/offline.html",revision:"d9544ffcf5485611e24219d8e0ff6fe1"},{url:"script.js",revision:"0ef32bf65dd17805fa591256cc4fa106"},{url:"styles.css",revision:"0e13689f444b8a846cb07a79f2a90826"}],{ignoreURLParametersMatching:[/^utm_/,/^fbclid$/]})}));
+//# sourceMappingURL=sw.js.map

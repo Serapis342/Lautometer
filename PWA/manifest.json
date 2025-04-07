@@ -1,38 +1,38 @@
 {
     "short_name": "LOM",
     "name": "Laut-O-Meter",
-    "scope": "/Lautometer/",
     "icons": [
         {
-            "src": "microphone.svg",
-            "type": "image/svg+xml",
+            "src": "./microphone.svg",
+            "type": "image/svg0+xml",
             "sizes": "512x512"
         },
         {
-            "src": "microphone-512.png",
+            "src": "./microphone-512.png",
             "type": "image/png",
             "sizes": "512x512"
         },
         {
-            "src": "microphone-256.png",
+            "src": "./microphone-256.png",
             "type": "image/png",
             "sizes": "256x256"
         },
         {
-            "src": "microphone-128.png",
+            "src": "./microphone-128.png",
             "type": "image/png",
             "sizes": "128x128"
         }, 
         {
-            "src": "microphone-64.png",
+            "src": "./microphone-64.png",
             "type": "image/png",
             "sizes": "64x64"
         }
     ],
-    "start_url": "https://serapis342.github.io/Lautometer/",
+    "start_url": "/Lautometer/",
     "background_color": "#282A36",
     "display": "fullscreen",
     "theme_color": "#bd93f9",
     "description": "Dezibelmesser",
-    "prefer_related_applications": "true"
+    "prefer_related_applications": true
+
 }
