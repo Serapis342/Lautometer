@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offline</title>
+    <title>Error</title>
     <style>
         body {
             display: flex;
@@ -39,8 +39,15 @@
 
 <body>
     <div class="container">
-        <h1>You're currently offline, please try again later.</h1>
-        <p>We'll let you know when you're back online.</p>
+        <h1>This application is not designed for this screen size</h1>
+        <p>Please resize your window or switch to another device</p>
     </div>
+
+    <script>
+        window.onresize = function() {
+            window.location.href = "./index.html";
+        }
+    </script>
 </body>
+
 </html>

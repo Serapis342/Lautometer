@@ -5,9 +5,6 @@ const limitCount = document.getElementById('limitCount');
 const pauseButton = document.getElementById('pause_go');
 const pauseButtonImage = document.getElementById('image_pause');
 const restartButton = document.getElementById('restart');
-const next = document.getElementById('next');
-const prev = document.getElementById('prev');
-const numberInput = document.getElementById('number_input');
 const title = document.getElementById('title');
 
 let dbMaxCounter = 0;
@@ -37,37 +34,13 @@ pauseButton.onclick = function() {
     }
 };
 
-next.onclick = function () {
-    dbMax.innerHTML = parseInt(dbMax.innerHTML) + 1;
-    numberInput.value = dbMax.innerHTML = parseInt(dbMax.innerHTML);    
-    setNumberInputToBoundary();
-}
-
-prev.onclick = function (){
-    dbMax.innerHTML = parseInt(dbMax.innerHTML) - 1;
-    numberInput.value = dbMax.innerHTML = parseInt(dbMax.innerHTML);
-    setNumberInputToBoundary();
-}
-
 restartButton.onclick = function() {
     dbMaxCounter = 0;
     checkLoudness(-4);
 }
 
-let interval; 
-numberInput.addEventListener("focus", () => {
-    interval = setInterval(() => {
-        setNumberInputToBoundary();
-        dbMax.innerHTML = numberInput.value;
-    }, 0); 
-});
-
-numberInput.addEventListener("blur", () => {
-    clearInterval(interval);
-});
-
-window.addEventListener("load", adjustFontSize);
-window.addEventListener("resize", adjustFontSize);
+window.addEventListener("resize", checkOverlapping);
+window.onload = checkOverlapping();
 
 function getMicrophone() {
     navigator.mediaDevices.getUserMedia({ video: false, audio: true })
@@ -83,23 +56,24 @@ function measureLoudness(stream) {
     const audioContext = new AudioContext();
     const analyser = audioContext.createAnalyser();
     const microphone = audioContext.createMediaStreamSource(stream);
-    microphone.connect(analyser);
+    const lowpass = audioContext.createBiquadFilter();
 
-    analyser.fftSize = 8192;
+    lowpass.type = "lowpass";
+    lowpass.frequency.value = 3000;
+
+    microphone.connect(lowpass);
+    lowpass.connect(analyser);
+
+    analyser.fftSize = 32768;
     const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Float32Array(bufferLength);
 
-    function getRMS(samples = 10) {
+    function getRMS(samples = 100) {
         let totalRMS = 0;
 
         for (let j = 0; j < samples; j++) {
-            const dataArray = new Float32Array(bufferLength);
             analyser.getFloatTimeDomainData(dataArray);
-
-            let sum = 0;
-            for (let i = 0; i < bufferLength; i++) {
-                sum += Math.pow(dataArray[i], 2);
-            }
-
+            let sum = dataArray.reduce((acc, val) => acc + val * val, 0);
             totalRMS += Math.sqrt(sum / bufferLength);
         }
 
@@ -108,20 +82,19 @@ function measureLoudness(stream) {
         dB = Math.max(dB, 0);
 
         dbLevel.innerHTML = `${Math.round(dB)}`;
-
-        let dbMaxValue = parseInt(dbMax.innerHTML)
-        checkLoudness(dB, dbMaxValue);
-        changeDBcolor(dB, dbMaxValue);
+        checkLoudness(dB, dbMax.value);
+        changeDBcolor(dB, dbMax.value);
     }
 
     getRMS();
 
     if (!window.checkLoudnessInterval) {
-        window.checkLoudnessInterval = setInterval(() => {
-            getRMS();
-        }, 200);
+        window.checkLoudnessInterval = setInterval(getRMS, 100);
     }
 }
+
+
+
 
 let dbHandler = false;
 function checkLoudness(dB, dbMaxValue) {
@@ -131,12 +104,6 @@ function checkLoudness(dB, dbMaxValue) {
     } else if (dB <= dbMaxValue) { dbHandler = false; }
 
     limitCount.innerText = dbMaxCounter;
-}
-
-function setNumberInputToBoundary() {
-    if (numberInput.value > 169) { numberInput.value = 169 }
-    else if (numberInput.value < 0) { numberInput.value = 0 }
-    dbMax.innerHTML = numberInput.value;
 }
 
 function changeDBcolor(dB, dbMaxValue) {
@@ -155,14 +122,25 @@ if ('serviceWorker' in navigator) {
         .catch(err => console.error('service worker not registered: ', err));
 }
 
-function adjustFontSize() {
-    const parentWidth = document.body.clientWidth;
-    let currentFontSize = parseFloat(window.getComputedStyle(title).fontSize);
+function checkOverlapping() {
+    let elements = document.getElementsByClassName("checkCollision");
 
-    if (title.offsetWidth > parentWidth) {
-        while (title.offsetWidth > parentWidth) {
-            currentFontSize -= 1;
-            title.style.fontSize = `${currentFontSize}px`;
+    for (let i = 0; i < elements.length; i++) {
+        for (let j = i + 1; j < elements.length; j++) {
+            if (isOverlapping(elements[i], elements[j])) {
+                window.location.href = "./false_screensize.html";
+                return;
+            }
         }
     }
+}
+
+function isOverlapping(elem1, elem2) {
+    let rect1 = elem1.getBoundingClientRect();
+    let rect2 = elem2.getBoundingClientRect();
+
+    return !(rect1.right < rect2.left ||
+        rect1.left > rect2.right ||
+        rect1.bottom < rect2.top ||
+        rect1.top > rect2.bottom);
 }

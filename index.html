@@ -3,42 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#bd93f9" />
+    <meta name="description" content="This website allows you to keep track of how loud your environment is and how often it exceeds a certain volume level">
     <title>Laut-O-Meter</title>
     <link rel="icon" type="image/x-icon" href="./icons/favicon.ico">
     <link rel="manifest" href="./PWA/manifest.json">
     <link rel="stylesheet" href="styles.css">
+    <link rel="apple-touch-icon" href="./PWA/microphone-128.png">
+    <script src="script.js" defer></script>
 </head>
 <body>
-
-    <div class="container-wrapper">
-    <h1 id="title">Laut-O-Meter</h1>
+    <span id="titleSpan" class="checkCollision">
+        <h1 id="title">Laut-O-Meter</h1>
+    </span>
     
-    <div id="container">
-        <span id="next"></span>
-        <span id="prev"></span>
-        <div id="box">
-            <span id="maxLimit">
-                0
-            </span>
-            <input id="number_input" type="number" value="5" min="0" max="169">
-        </div>
-    </div>
-
-    <div id="controls">
+    <div id="controls" class="checkCollision">
+        <input id="maxLimit" type="number" min="0" max="169" aria-label="Max DB input">
         <p><span id="dbLevel">0</span></p>
-        <p>Times Limit Reached: <span id="limitCount">0</span></p>
+        
+        <p class="limitCountSize">Times Limit Reached: <div id="limitCount" class="limitCountSize">0</div></p>
 
-        <input type="range" id="calibration" min="-100" max="100" step="1" value="0">
+        <input type="range" id="calibration" min="-100" max="100" step="1" value="0" aria-label="Calibration slider">
         <br>
-        <button id="pause_go">
-            <img id="image_pause" src="icons/start.svg" href="pause_go">
+        <button id="pause_go" aria-label="Start button">
+            <img id="image_pause" src="icons/start.svg" href="pause_go" alt="Start/Pause">
         </button>
-        <button id="restart">
-            <img id="image_restart" src="icons/restart.svg" href="restart">
+        <button id="restart" aria-label="Restart button">
+            <img id="image_restart" src="icons/restart.svg" href="restart" alt="Restart">
         </button>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>

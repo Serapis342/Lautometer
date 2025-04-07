@@ -15,7 +15,8 @@
         {
             "src": "./microphone-256.png",
             "type": "image/png",
-            "sizes": "256x256"
+            "sizes": "256x256",
+            "purpose": "maskable"
         },
         {
             "src": "./microphone-128.png",
@@ -31,7 +32,7 @@
     "start_url": "/Lautometer/",
     "background_color": "#282A36",
     "display": "fullscreen",
-    "theme_color": "#bd93f9",
+    "theme_color": "#282A36",
     "description": "Dezibelmesser",
     "prefer_related_applications": true
 
