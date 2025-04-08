@@ -77,7 +77,8 @@ button {
     font-size: clamp(40px, 12vw, 100px);
     font-weight: bold;
     text-align: center;
-    color: #bd93f9;
+    /* color: #bd93f9; */
+    color: #008866;
     text-transform: uppercase;
     white-space: nowrap;
     overflow: hidden;
