@@ -122,6 +122,7 @@ if ('serviceWorker' in navigator) {
         .catch(err => console.error('service worker not registered: ', err));
 }
 
+/* Commented out for debugging reasons
 function checkOverlapping() {
     let elements = document.getElementsByClassName("checkCollision");
 
@@ -143,4 +144,4 @@ function isOverlapping(elem1, elem2) {
         rect1.left > rect2.right ||
         rect1.bottom < rect2.top ||
         rect1.top > rect2.bottom);
-}
+}*/
